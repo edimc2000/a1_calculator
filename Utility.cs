@@ -23,16 +23,18 @@ namespace Calculator
             Operation[] operations = (Operation[])Enum.GetValues(typeof(Operation));
             String[] symbols = { "(+)", "(-)", "(*)", "(/)", "(^)" };
 
-            DisplayTitle("Calculator", "top");
+            DisplayTitle("", "top");
 
             for (int i = 0; i < operations.Length; i++)
             {
-                //string tabStops = i > 0 ? "              " : "   Type\t";
-                string tabStops = i > 0 ? new string(' ', 14): "   Type\t";
+                string tabStops = i > 0 ? new string(' ', 14) : "   Type\t";
                 string centerThis = $"{tabStops}{i + 1}   - to {operations[i]}     \t{symbols[i]}    ";
-                PrintCenteredTitle(centerThis, 29);
+                Console.WriteLine(PrintCenteredTitle(centerThis, 29));
+                //applyHighlighter(PrintCenteredTitle(centerThis, 29));
             }
-            DisplayTitle("Calculator", "bottom");
+
+            DisplayTitle("", "bottom");
+
 
         }
 
@@ -44,39 +46,61 @@ namespace Calculator
         {
             string lineBoxTop = new string('─', 45);
             string cornerLeftTop = " ┌";
-            string cornerRightTop = "┐";
+            string cornerRightTop = "┐ ";
             string cornerLeftBottom = " └";
-            string cornerRightBottom = "┘";
+            string cornerRightBottom = "┘ ";
+            
+            string top = cornerLeftTop + lineBoxTop + cornerRightTop;
+            string bottom = cornerLeftBottom + lineBoxTop + cornerRightBottom ;
+
+ 
 
             if (cover == "all")
             {
-                Console.WriteLine(cornerLeftTop + lineBoxTop + cornerRightTop);
-                PrintCenteredTitle(title, 45);
-                Console.WriteLine(cornerLeftBottom + lineBoxTop + cornerRightBottom);
+                string middle = PrintCenteredTitle(title, 45);
+
+                applyHighlighter(top);
+                applyHighlighter(middle);
+                applyHighlighter(bottom);
+
             }
 
             if (cover == "top")
             {
-                Console.WriteLine(cornerLeftTop + lineBoxTop + cornerRightTop);
+                //applyHighlighter(top);
+                Console.WriteLine(top);
             }
 
             if (cover == "bottom")
             {
-                Console.WriteLine(cornerLeftBottom + lineBoxTop + cornerRightBottom);
+                //applyHighlighter(bottom);
+                Console.WriteLine(bottom);
             }
-
 
         }
 
 
-        static void PrintCenteredTitle(string title, int width)
+        static string PrintCenteredTitle(string title, int width)
         {
             int availableWidth = width;
             //Console.WriteLine(availableWidth);
-            string centeredTitle = string.Format(" │{0,-" + availableWidth + "}│",
+            string centeredTitle = string.Format(" │{0,-" + availableWidth + "}│ ",
                 title.PadLeft((availableWidth + title.Length) / 2).PadRight(availableWidth));
-            Console.WriteLine(centeredTitle);
+            //Console.WriteLine(centeredTitle);
+
+            return centeredTitle;
         }
+
+
+        public static void applyHighlighter(string text)
+        {
+            string backgroundColor = "\u001B[48;2;26;132;184m";  // light blue
+            string foregroundColor = "\u001b[37m";  // white
+            string reset = "\u001b[39m\u001b[49m";
+            text = backgroundColor + foregroundColor + text + reset;
+            Console.WriteLine(text);
+        }
+
     }
 
 
