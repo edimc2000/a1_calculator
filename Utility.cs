@@ -15,10 +15,7 @@ namespace Calculator
 
     public static class Utility
     {
-
-
-
-        public static void OperationMenu()
+        public static string OperationMenu()
         {
             Operation[] operations = (Operation[])Enum.GetValues(typeof(Operation));
             String[] symbols = { "(+)", "(-)", "(*)", "(/)", "(^)" };
@@ -30,17 +27,48 @@ namespace Calculator
                 string tabStops = i > 0 ? new string(' ', 14) : "   Type\t";
                 string centerThis = $"{tabStops}{i + 1}   - to {operations[i]}     \t{symbols[i]}    ";
                 Console.WriteLine(PrintCenteredTitle(centerThis, 29));
-                //applyHighlighter(PrintCenteredTitle(centerThis, 29));
             }
-
             DisplayTitle("", "bottom");
 
+            Console.Write("Enter your choice \t: ");
 
+            return Console.ReadLine();
         }
 
 
 
+        public static bool ValidateInput(string input)
+        {
 
+            Console.WriteLine(input);
+
+            try
+            {
+                int result = Convert.ToInt32(input);
+
+                if (result >= 1 && result <= 5)
+                {
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine($" Error: Enter choice between 1 and 5");
+                    return false;
+
+                }
+
+            }
+
+            catch (Exception err)
+            {
+                Console.WriteLine($" Error: {err.Message}");
+                Console.WriteLine(" Please enter a valid integer. Try again.");
+                return false;
+            }
+
+
+            //return true;
+        }
 
         public static void DisplayTitle(string title, string cover)
         {
@@ -49,31 +77,27 @@ namespace Calculator
             string cornerRightTop = "┐ ";
             string cornerLeftBottom = " └";
             string cornerRightBottom = "┘ ";
-            
-            string top = cornerLeftTop + lineBoxTop + cornerRightTop;
-            string bottom = cornerLeftBottom + lineBoxTop + cornerRightBottom ;
 
- 
+            string top = cornerLeftTop + lineBoxTop + cornerRightTop;
+            string bottom = cornerLeftBottom + lineBoxTop + cornerRightBottom;
+
+
 
             if (cover == "all")
             {
                 string middle = PrintCenteredTitle(title, 45);
-
-                applyHighlighter(top);
-                applyHighlighter(middle);
-                applyHighlighter(bottom);
-
+                ApplyHighlighter(top);
+                ApplyHighlighter(middle);
+                ApplyHighlighter(bottom);
             }
 
             if (cover == "top")
             {
-                //applyHighlighter(top);
                 Console.WriteLine(top);
             }
 
             if (cover == "bottom")
             {
-                //applyHighlighter(bottom);
                 Console.WriteLine(bottom);
             }
 
@@ -83,16 +107,14 @@ namespace Calculator
         static string PrintCenteredTitle(string title, int width)
         {
             int availableWidth = width;
-            //Console.WriteLine(availableWidth);
+
             string centeredTitle = string.Format(" │{0,-" + availableWidth + "}│ ",
                 title.PadLeft((availableWidth + title.Length) / 2).PadRight(availableWidth));
-            //Console.WriteLine(centeredTitle);
-
             return centeredTitle;
         }
 
 
-        public static void applyHighlighter(string text)
+        public static void ApplyHighlighter(string text)
         {
             string backgroundColor = "\u001B[48;2;26;132;184m";  // light blue
             string foregroundColor = "\u001b[37m";  // white
