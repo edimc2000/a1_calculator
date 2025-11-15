@@ -23,10 +23,10 @@ namespace Calculator
             Operation[] operations = (Operation[])Enum.GetValues(typeof(Operation));
             String[] symbols = { "(+)", "(-)", "(*)", "(/)", "(^)" };
 
-            Console.Write("\n\tType");
+            //Console.Write("\n\tType");
             for (int i = 0; i < operations.Length; i++)
             {
-                string tabStops = i > 0 ? "\t\t" : "\t";
+                string tabStops = i > 0 ? "\t\t" : "\n\tType\t";
                 Console.Write($"{tabStops}{i + 1}   - to {operations[i]}     \t{symbols[i]} \n");
             }
 
