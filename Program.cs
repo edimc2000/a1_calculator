@@ -8,7 +8,7 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Calculator App ");
-            Utility.DisplayTitle("Calculator");
+            Utility.DisplayTitle("Calculator", "all");
             Utility.OperationMenu();
 
 
