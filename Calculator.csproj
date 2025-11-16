@@ -15,4 +15,12 @@
     <Folder Include="obj\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="C:\Users\Admin\.nuget\packages\mstest.testadapter\3.1.1\build\net6.0\\Microsoft.TestPlatform.AdapterUtilities.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\Admin\.nuget\packages\mstest.testadapter\3.1.1\build\net6.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
+  </ItemGroup>
+
 </Project>
