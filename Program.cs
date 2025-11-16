@@ -12,14 +12,29 @@
             Utility.OperationMenu();
 
             int operationToPerform = MathOperation(validInput, attemptCounter, maxAttempt);
-            
+
             if (operationToPerform == 0)
             {
                 Environment.Exit(0);
             }
             Console.WriteLine($"operationToPerform \t: {operationToPerform}");
             Console.WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
-            Calculate.Add("1", "2");
+
+            Console.Write($"  Enter first number\t:  ");
+            string firstNumber = Console.ReadLine() ?? " ";
+            Console.Write($"  Enter second number\t:  ");
+            string secondNumber = Console.ReadLine() ?? " ";
+            ;
+
+            //Calculate.Add(firstNumber, secondNumber);
+
+            //Calculate.Add("01", "200000.33");
+            //Calculate.Add("1", "z");
+            CallCalculate(operationToPerform, firstNumber, secondNumber);
+
+
+
+
 
         }
 
@@ -28,12 +43,6 @@
 
             while (!isLooping)
             {
-
-                //Utility.IsNumber("25");
-                //Utility.IsNumber("a");
-                //Utility.IsNumber("25.0");
-                //Utility.IsNumber("c");
-
                 string choice = Utility.OperationChoice();
                 int operation = Utility.ValidateInput(choice);
                 attemptCounter++;
@@ -41,8 +50,6 @@
                 if (operation != 0)
                 {
                     isLooping = true;
-                    //Console.WriteLine($" ---this is fn math operation ValidateInput result is  : {operation}");
-                    //Console.WriteLine($" ---enum  : {(Operation)operation-1}");
                     return operation;
                 }
 
@@ -53,13 +60,26 @@
                     Console.WriteLine($"{Utility.ErrorColor} Maximum number of attempts has been reached. " +
                                       $"{attemptCounter} / {maxAttempt} {Utility.ResetColor}");
                 }
+            }
+            return 0;
+        }
+
+        static void CallCalculate(int operationToPerform, string firstNumber, string secondNumber)
+        {
+            switch (operationToPerform)
+            {
+
+                case 1:
+                    Console.WriteLine( "--- Add --- ");
+                    Calculate.Add(firstNumber, secondNumber);
+                    break;
+
+                default:
+                    break; 
 
 
             }
 
-
-
-            return 0;
         }
 
     }
