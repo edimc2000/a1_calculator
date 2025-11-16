@@ -20,17 +20,17 @@
             Console.WriteLine($"operationToPerform \t: {operationToPerform}");
             Console.WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
 
-            Console.Write($"  Enter first number\t:  ");
-            string firstNumber = Console.ReadLine() ?? " ";
-            Console.Write($"  Enter second number\t:  ");
-            string secondNumber = Console.ReadLine() ?? " ";
-            ;
+            //Console.Write($"  Enter first number\t:  ");
+            //string firstNumber = Console.ReadLine() ?? " ";
+            //Console.Write($"  Enter second number\t:  ");
+            //string secondNumber = Console.ReadLine() ?? " ";
+            
 
             //Calculate.Add(firstNumber, secondNumber);
 
             //Calculate.Add("01", "200000.33");
             //Calculate.Add("1", "z");
-            CallCalculate(operationToPerform, firstNumber, secondNumber);
+            CallCalculate(operationToPerform);
 
 
 
@@ -64,18 +64,18 @@
             return 0;
         }
 
-        static void CallCalculate(int operationToPerform, string firstNumber, string secondNumber)
+        static void CallCalculate(int operationToPerform)
         {
             switch (operationToPerform)
             {
 
                 case 1:
-                    Console.WriteLine("--- Add --- ");
-                    Calculate.Add(firstNumber, secondNumber);
+                    
+                    Calculate.Add();
                     break;
                 case 2:
                     Console.WriteLine("--- Subtract --- ");
-                    Calculate.Subtract( firstNumber, secondNumber);
+                    Calculate.Subtract();
                     break;
 
                 default:

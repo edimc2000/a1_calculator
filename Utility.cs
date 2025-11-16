@@ -119,7 +119,7 @@ namespace Calculator
         }
 
 
-        static string PrintCenteredTitle(string title, int width)
+        public static string PrintCenteredTitle(string title, int width)
         {
             int availableWidth = width;
 
@@ -145,6 +145,22 @@ namespace Calculator
             return Double.TryParse(input, out result);
         }
 
+        public static string[] CaptureInputs()
+        {
+            Console.Write($"  Enter value for a\t:  ");
+            string firstNumber = Console.ReadLine() ?? " ";
+            Console.Write($"  Enter value for b\t:  ");
+            string secondNumber = Console.ReadLine() ?? " ";
+
+            return [firstNumber, secondNumber];
+        }
+
+
+        public static void DisplayInputError(string number1, string number2)
+        {
+            Console.WriteLine($"\n{ErrorColor} Error: Unable to perform operation with the given inputs: `{number1}` and `{number2}`. {ResetColor}");
+            Console.WriteLine($"{ErrorColor} Expected: Both inputs should be of the same type - numbers. {ResetColor}");
+        }
     }
 
 
