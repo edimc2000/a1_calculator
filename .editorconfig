@@ -14,9 +14,9 @@ resharper_csharp_wrap_parameters_style = wrap_if_long
 #### Core EditorConfig Options ####
 
 # Indentation and spacing
-indent_size = 2
+indent_size = 4
 indent_style = space
-tab_width = 2
+tab_width = 4
 
 # New line preferences
 end_of_line = crlf

@@ -4,9 +4,6 @@ using System.Xml.Linq;
 
 namespace Calculator
 {
-
-
-
   enum Operation
   {
     Add,
@@ -59,10 +56,12 @@ namespace Calculator
 
       try
       {
+        //Console.WriteLine($" {input} yy -this is fn ValidateInput input  : \n\n");
         int result = Convert.ToInt32(input);
 
         if (result >= 1 && result <= 5)
         {
+          //Console.WriteLine($" ---this is fn ValidateInput utility  : {result}");
           return result;
         }
         else
@@ -137,6 +136,13 @@ namespace Calculator
       string reset = "\u001b[39m\u001b[49m";
       text = backgroundColor + foregroundColor + text + reset;
       Console.WriteLine(text);
+    }
+
+    public static double IsNumber(string input)
+    {
+      double result; 
+      Console.WriteLine(Double.TryParse(input, out result));
+      return result; 
     }
 
   }
