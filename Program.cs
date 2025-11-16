@@ -1,9 +1,9 @@
 ﻿namespace Calculator
 {
-    internal class Program
+    public class Program
     {
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             bool validInput = false;
             int attemptCounter = 0;
@@ -20,27 +20,11 @@
             Console.WriteLine($"operationToPerform \t: {operationToPerform}");
             Console.WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
 
-            //Console.Write($"  Enter first number\t:  ");
-            //string firstNumber = Console.ReadLine() ?? " ";
-            //Console.Write($"  Enter second number\t:  ");
-            //string secondNumber = Console.ReadLine() ?? " ";
-            
-
-            //Calculate.Add(firstNumber, secondNumber);
-
-            //Calculate.Add("01", "200000.33");
-            //Calculate.Add("1", "z");
             CallCalculate(operationToPerform);
-
-
-
-
-
         }
 
         static int MathOperation(bool isLooping, int attemptCounter, int maxAttempt)
         {
-
             while (!isLooping)
             {
                 string choice = Utility.OperationChoice();
@@ -68,26 +52,21 @@
         {
             switch (operationToPerform)
             {
-
                 case 1:
-                    
                     Calculate.Add();
                     break;
                 case 2:
-                    Console.WriteLine("--- Subtract --- ");
                     Calculate.Subtract();
                     break;
-
+                case 3:
+                    Calculate.Multiply();
+                    break;
+                case 4:
+                    Calculate.Divide();
+                    break;
                 default:
                     break;
-
-
             }
-
         }
-
     }
-
-
-
 }

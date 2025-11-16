@@ -6,28 +6,12 @@ namespace Calculator
 {
     public class Calculate()
     {
-        public static void Add(string number1, string number2)
-        {
-            try
-            {
-                Console.WriteLine($" Addition :\t{Double.Parse(number1)} + {Double.Parse(number2)} = {Double.Parse(number1) + Double.Parse(number2)}");
-            }
-            catch
-            {
-                Utility.DisplayInputError(number1, number2);
-            }
 
-        }
         public static void Add()
         {
-
-            Utility.DisplayTitle("", "top");
-            Console.WriteLine(Utility.PrintCenteredTitle("Addition", 45));
-            Console.WriteLine(Utility.PrintCenteredTitle("", 45));
-            Console.WriteLine(Utility.PrintCenteredTitle("  Formula: sum = a + b ", 45));
-            Utility.DisplayTitle("", "bottom");
-
-
+            string title = "Addition";
+            string formula = "  Formula: sum = a + b ";
+            Utility.TitleAndFormula(title, formula);
 
             string[] inputs = Utility.CaptureInputs();
             string number1 = inputs[0];
@@ -44,8 +28,16 @@ namespace Calculator
 
         }
 
-        public static void Subtract(string number1, string number2)
+        public static void Subtract()
         {
+            string title = "Subtraction";
+            string formula = "Formula: difference = a - b";
+            Utility.TitleAndFormula(title, formula);
+
+            string[] inputs = Utility.CaptureInputs();
+            string number1 = inputs[0];
+            string number2 = inputs[1];
+
             try
             {
                 Console.WriteLine($" Subtraction :\t{Double.Parse(number1)} - {Double.Parse(number2)} = {Double.Parse(number1) - Double.Parse(number2)}");
@@ -54,12 +46,46 @@ namespace Calculator
             {
                 Utility.DisplayInputError(number1, number2);
             }
-
         }
-
-        public static void Subtract()
+      
+        public static void Multiply()
         {
+            string title = "Multiplication";
+            string formula = "Formula: product = a * b";
+            Utility.TitleAndFormula(title, formula);
 
+            string[] inputs = Utility.CaptureInputs();
+            string number1 = inputs[0];
+            string number2 = inputs[1];
+
+            try
+            {
+                Console.WriteLine($" Subtraction :\t{Double.Parse(number1)} * {Double.Parse(number2)} = {Double.Parse(number1) * Double.Parse(number2)}");
+            }
+            catch
+            {
+                Utility.DisplayInputError(number1, number2);
+            }
+        }
+        
+        public static void Divide()
+        {
+            string title = "Division";
+            string formula = "Formula: quotient = a / b";
+            Utility.TitleAndFormula(title, formula);
+
+            string[] inputs = Utility.CaptureInputs();
+            string number1 = inputs[0];
+            string number2 = inputs[1];
+
+            try
+            {
+                Console.WriteLine($" Subtraction :\t{Double.Parse(number1)} / {Double.Parse(number2)} = {Double.Parse(number1) / Double.Parse(number2)}");
+            }
+            catch
+            {
+                Utility.DisplayInputError(number1, number2);
+            }
         }
     }
 }

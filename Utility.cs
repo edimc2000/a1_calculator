@@ -161,6 +161,17 @@ namespace Calculator
             Console.WriteLine($"\n{ErrorColor} Error: Unable to perform operation with the given inputs: `{number1}` and `{number2}`. {ResetColor}");
             Console.WriteLine($"{ErrorColor} Expected: Both inputs should be of the same type - numbers. {ResetColor}");
         }
+
+
+        public static void TitleAndFormula(string title, string formula)
+        {
+            Console.WriteLine();
+            Utility.DisplayTitle("", "top");
+            Console.WriteLine(Utility.PrintCenteredTitle(title, 45));
+            Console.WriteLine(Utility.PrintCenteredTitle("", 45));
+            Console.WriteLine(Utility.PrintCenteredTitle(formula, 45));
+            Utility.DisplayTitle("", "bottom");
+        }
     }
 
 
