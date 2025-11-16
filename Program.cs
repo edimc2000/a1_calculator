@@ -70,12 +70,16 @@
             {
 
                 case 1:
-                    Console.WriteLine( "--- Add --- ");
+                    Console.WriteLine("--- Add --- ");
                     Calculate.Add(firstNumber, secondNumber);
+                    break;
+                case 2:
+                    Console.WriteLine("--- Subtract --- ");
+                    Calculate.Subtract( firstNumber, secondNumber);
                     break;
 
                 default:
-                    break; 
+                    break;
 
 
             }
