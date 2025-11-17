@@ -8,13 +8,13 @@ public class Program
         int attemptCounter = 0;
         int maxAttempt = 5;
         Utility.DisplayTitle("Calculator", "all");
-        Utility.OperationMenu();
+       Utility.OperationMenu();
 
         int operationToPerform = MathOperation(validInput, attemptCounter, maxAttempt);
 
         if (operationToPerform == 0) Environment.Exit(0);
-        Console.WriteLine($"operationToPerform \t: {operationToPerform}");
-        Console.WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
+        WriteLine($"operationToPerform \t: {operationToPerform}");
+        WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
 
         CallCalculate(operationToPerform);
     }
@@ -36,8 +36,8 @@ public class Program
             if (attemptCounter >= maxAttempt)
             {
                 isLooping = true;
-                Console.SetCursorPosition(29, Console.CursorTop);
-                Console.WriteLine(
+                SetCursorPosition(29, CursorTop);
+                WriteLine(
                     $"{Utility.ErrorColor} Maximum number of attempts has been reached. " +
                     $"{attemptCounter} / {maxAttempt} {Utility.ResetColor}");
             }
