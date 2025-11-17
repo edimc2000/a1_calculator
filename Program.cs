@@ -1,18 +1,20 @@
-﻿namespace Calculator
+﻿namespace Calculator;
+
+public class Program
 {
-    internal class Program
+    public static void Main(string[] args)
     {
         bool validInput = false;
         int attemptCounter = 0;
         int maxAttempt = 5;
         Utility.DisplayTitle("Calculator", "all");
-        Utility.OperationMenu();
+       Utility.OperationMenu();
 
         int operationToPerform = MathOperation(validInput, attemptCounter, maxAttempt);
 
         if (operationToPerform == 0) Environment.Exit(0);
-        Console.WriteLine($"operationToPerform \t: {operationToPerform}");
-        Console.WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
+        WriteLine($"operationToPerform \t: {operationToPerform}");
+        WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
 
         CallCalculate(operationToPerform);
     }
@@ -25,29 +27,46 @@
             int operation = Utility.ValidateInput(choice, 1, 5);
             attemptCounter++;
 
-            bool validInput = false;
-
-
-            while (!validInput) 
+            if (operation != 0)
             {
-
-               String choice = Utility.OperationMenu();
-               validInput =  Utility.ValidateInput(choice);
-
+                isLooping = true;
+                return operation;
             }
 
             if (attemptCounter >= maxAttempt)
             {
                 isLooping = true;
-                Console.SetCursorPosition(29, Console.CursorTop);
-                Console.WriteLine(
+                SetCursorPosition(29, CursorTop);
+                WriteLine(
                     $"{Utility.ErrorColor} Maximum number of attempts has been reached. " +
                     $"{attemptCounter} / {maxAttempt} {Utility.ResetColor}");
             }
         }
 
+        return 0;
     }
 
-
-
+    private static void CallCalculate(int operationToPerform)
+    {
+        switch (operationToPerform)
+        {
+            case 1:
+                Calculate.Add();
+                break;
+            case 2:
+                Calculate.Subtract();
+                break;
+            case 3:
+                Calculate.Multiply();
+                break;
+            case 4:
+                Calculate.Divide();
+                break;
+            case 5:
+                Calculate.Power();
+                break;
+            default:
+                break;
+        }
+    }
 }

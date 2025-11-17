@@ -1,17 +1,14 @@
-﻿using System;
+﻿
+namespace Calculator;
 
-
-namespace Calculator
+internal enum Operation
 {
-
-    enum Operation
-    {
-        Add,
-        Subtract,
-        Multiply,
-        Divide,
-        Power
-    }
+    Add,
+    Subtract,
+    Multiply,
+    Divide,
+    Power
+}
 
 public static class Utility
 {
@@ -20,7 +17,6 @@ public static class Utility
 
     // set white background and red foreground
     public const string ErrorColor = "\e[48;2;255;255;255;38;2;255;0;0m";
-
 
     // light blue
     public const string BackgroundColor = "\e[48;2;26;132;184m";
@@ -33,19 +29,18 @@ public static class Utility
         Operation[] operations = Enum.GetValues<Operation>();
         string[] symbols = ["(+)", "(-)", "(*)", "(/)", "(^)"];
 
-            DisplayTitle("", "top");
+        DisplayTitle("", "top");
 
         for (int i = 0; i < operations.Length; i++)
         {
             string tabStops = i > 0 ? new string(' ', 14) : "   Type\t";
             string centerThis = $"{tabStops}{i + 1}   - to {operations[i]}     \t{symbols[i]}    ";
-            Console.WriteLine(PrintCenteredTitle(centerThis, 29));
+            WriteLine(PrintCenteredTitle(centerThis, 29));
         }
 
         DisplayTitle("", "bottom");
     }
 
-            Console.Write("Enter your choice \t: ");
 
     public static string OperationChoice()
     {
@@ -55,17 +50,17 @@ public static class Utility
     }
 
 
-
-        public static bool ValidateInput(string input)
-        {
+    public static int ValidateInput(string input, int choiceStart, int choiceEnd)
+    {
+        const int errorPosition = 29;
 
         try
         {
             int result = Convert.ToInt32(input);
-            if (result is >= 1 and  <= 5) return result;
+            if (result is >= 1 and <= 5) return result;
 
             Console.SetCursorPosition(errorPosition, Console.CursorTop - 1);
-            Console.WriteLine($"{ErrorColor} Error: Enter choice between {choiceStart} " +
+            WriteLine($"{ErrorColor} Error: Enter choice between {choiceStart} " +
                               $"and {choiceEnd}  {ResetColor}");
             return 0;
         }
@@ -73,64 +68,61 @@ public static class Utility
         catch
         {
             Console.SetCursorPosition(errorPosition, Console.CursorTop - 1);
-            Console.WriteLine(
-                $"{ErrorColor} Please enter a valid choice between {choiceStart}" +
-                $" and  {choiceEnd} . {ResetColor}");
+            WriteLine($"{ErrorColor} Please enter a valid choice between " +
+                              $"{choiceStart} and {choiceEnd} . {ResetColor}");
             return 0;
         }
     }
 
-        public static void DisplayTitle(string title, string cover)
-        {
-            string lineBoxTop = new string('─', 45);
-            string cornerLeftTop = " ┌";
-            string cornerRightTop = "┐ ";
-            string cornerLeftBottom = " └";
-            string cornerRightBottom = "┘ ";
+    public static void DisplayTitle(string title, string cover)
+    {
+        string lineBoxTop = new('─', 45);
+        const string cornerLeftTop = " ┌";
+        const string cornerRightTop = "┐ ";
+        const string cornerLeftBottom = " └";
+        const string cornerRightBottom = "┘ ";
 
-            string top = cornerLeftTop + lineBoxTop + cornerRightTop;
-            string bottom = cornerLeftBottom + lineBoxTop + cornerRightBottom;
-
+        string top = cornerLeftTop + lineBoxTop + cornerRightTop;
+        string bottom = cornerLeftBottom + lineBoxTop + cornerRightBottom;
 
 
         switch (cover)
         {
-
             case "all":
                 string middle = PrintCenteredTitle(title, 45);
                 ApplyHighlighter(top);
                 ApplyHighlighter(middle);
                 ApplyHighlighter(bottom);
-            }
+                break;
+
+            case "botton":
+                break;
 
             case "top":
-                Console.WriteLine(top);
+                WriteLine(top);
                 break;
 
             default:
-                Console.WriteLine(bottom);
+                WriteLine(bottom);
                 break;
-
         }
-
-
     }
 
 
-        static string PrintCenteredTitle(string title, int width)
-        {
-            int availableWidth = width;
+    public static string PrintCenteredTitle(string title, int width)
+    {
+        int availableWidth = width;
 
-            string centeredTitle = string.Format(" │{0,-" + availableWidth + "}│ ",
-                title.PadLeft((availableWidth + title.Length) / 2).PadRight(availableWidth));
-            return centeredTitle;
-        }
+        string centeredTitle = string.Format(" │{0,-" + availableWidth + "}│ ",
+            title.PadLeft((availableWidth + title.Length) / 2).PadRight(availableWidth));
+        return centeredTitle;
+    }
 
 
     public static void ApplyHighlighter(string text)
     {
         text = BackgroundColor + ForegroundColor + text + ResetColor;
-        Console.WriteLine(text);
+        WriteLine(text);
     }
 
     public static bool IsDouble(string input)
@@ -152,22 +144,22 @@ public static class Utility
 
     public static void DisplayInputError(string number1, string number2)
     {
-        string errorLine1 = "Error: Unable to perform operation with the given inputs: ";
-        string errorLine2 = "Expected: Both inputs should be of the same type - numbers.";
+        const string errorLine1 = "Error: Unable to perform operation with the given inputs: ";
+        const string errorLine2 = "Expected: Both inputs should be of the same type - numbers.";
 
-        Console.WriteLine($"\n{ErrorColor} {errorLine1} `{number1}` and `{number2}`. {ResetColor}");
-        Console.WriteLine($"{ErrorColor} {errorLine2} {ResetColor}");
+        WriteLine($"\n{ErrorColor} {errorLine1} `{number1}` and `{number2}`. {ResetColor}");
+        WriteLine($"{ErrorColor} {errorLine2} {ResetColor}");
     }
 
 
-    public static void TitleAndFormula(string title, string formula)
+    public static void DisplayTitleAndFormula(string title, string formula)
     {
-        Console.WriteLine();
+        WriteLine();
         DisplayTitle("", "top");
-        Console.WriteLine(PrintCenteredTitle(title, 45));
-        Console.WriteLine(PrintCenteredTitle("", 45));
-        Console.WriteLine(PrintCenteredTitle("", 45));
-        Console.WriteLine(PrintCenteredTitle(formula, 45));
+        WriteLine(PrintCenteredTitle(title, 45));
+        WriteLine(PrintCenteredTitle("", 45));
+        WriteLine(PrintCenteredTitle("", 45));
+        WriteLine(PrintCenteredTitle(formula, 45));
         DisplayTitle("", "bottom");
     }
 }
