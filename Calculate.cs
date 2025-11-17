@@ -9,7 +9,7 @@ public class Calculate()
     {
         string title = "Addition";
         string formula = "  Formula: sum = a + b ";
-        Utility.TitleAndFormula(title, formula);
+        Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
         string number1 = inputs[0];
@@ -24,13 +24,15 @@ public class Calculate()
         {
             Utility.DisplayInputError(number1, number2);
         }
+
+        
     }
 
-    public static void Subtract()
+    public static void Subtract() 
     {
         string title = "Subtraction";
         string formula = "Formula: difference = a - b";
-        Utility.TitleAndFormula(title, formula);
+        Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
         string number1 = inputs[0];
@@ -51,7 +53,7 @@ public class Calculate()
     {
         string title = "Multiplication";
         string formula = "Formula: product = a * b";
-        Utility.TitleAndFormula(title, formula);
+        Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
         string number1 = inputs[0];
@@ -72,7 +74,7 @@ public class Calculate()
     {
         string title = "Division";
         string formula = "Formula: quotient = a / b";
-        Utility.TitleAndFormula(title, formula);
+        Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
         string number1 = inputs[0];
@@ -94,7 +96,7 @@ public class Calculate()
     {
         string title = "Exponentiation";
         string formula = "Formula: result = a ^ b";
-        Utility.TitleAndFormula(title, formula);
+        Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
         string number1 = inputs[0];

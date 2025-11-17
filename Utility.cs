@@ -1,6 +1,4 @@
-﻿using System;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
+﻿
 namespace Calculator;
 
 internal enum Operation
@@ -19,7 +17,6 @@ public static class Utility
 
     // set white background and red foreground
     public const string ErrorColor = "\e[48;2;255;255;255;38;2;255;0;0m";
-
 
     // light blue
     public const string BackgroundColor = "\e[48;2;26;132;184m";
@@ -148,15 +145,15 @@ public static class Utility
 
     public static void DisplayInputError(string number1, string number2)
     {
-        string errorLine1 = "Error: Unable to perform operation with the given inputs: ";
-        string errorLine2 = "Expected: Both inputs should be of the same type - numbers.";
+        const string errorLine1 = "Error: Unable to perform operation with the given inputs: ";
+        const string errorLine2 = "Expected: Both inputs should be of the same type - numbers.";
 
         WriteLine($"\n{ErrorColor} {errorLine1} `{number1}` and `{number2}`. {ResetColor}");
         WriteLine($"{ErrorColor} {errorLine2} {ResetColor}");
     }
 
 
-    public static void TitleAndFormula(string title, string formula)
+    public static void DisplayTitleAndFormula(string title, string formula)
     {
         WriteLine();
         DisplayTitle("", "top");
