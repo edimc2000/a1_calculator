@@ -5,7 +5,7 @@ public class Program
     public static void Main(string[] args)
     {
 
-        WriteLine("sssssssssss");
+        
         bool validInput = false;
         int attemptCounter = 0;
         int maxAttempt = 5;
@@ -15,7 +15,9 @@ public class Program
         int operationToPerform = MathOperation(validInput, attemptCounter, maxAttempt);
 
         if (operationToPerform == 0)
+        {
             Environment.Exit(0);
+        }
         WriteLine($"operationToPerform \t: {operationToPerform}");
         WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
 
