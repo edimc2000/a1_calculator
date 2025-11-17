@@ -1,25 +1,15 @@
-﻿namespace Calculator;
-
-public class Program
+﻿namespace Calculator
 {
-    public static void Main(string[] args)
+    internal class Program
     {
-        bool validInput = false;
-        int attemptCounter = 0;
-        int maxAttempt = 5;
-        Utility.DisplayTitle("Calculator", "all");
-        Utility.OperationMenu();
 
-        int operationToPerform = MathOperation(validInput, attemptCounter, maxAttempt);
-
-        //if (operationToPerform == 0) Environment.Exit(0);
-
-        if (operationToPerform == 0) return;
-        //Console.WriteLine($"operationToPerform \t: {operationToPerform}");
-        //Console.WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
-
-        CallCalculate(operationToPerform);
-    }
+        static void Main(string[] args)
+        {
+            Utility.DisplayTitle("Calculator", "all");
+            
+            
+            
+            
 
     private static int MathOperation(bool isLooping, int attemptCounter, int maxAttempt)
     {
