@@ -44,8 +44,8 @@ public static class Utility
 
     public static string OperationChoice()
     {
-        Console.Write("  Enter your choice \t: ");
-        string response = Console.ReadLine() ?? "100";
+        Write("  Enter your choice \t: ");
+        string response = ReadLine() ?? "100";
         return response;
     }
 
@@ -59,17 +59,18 @@ public static class Utility
             int result = Convert.ToInt32(input);
             if (result is >= 1 and <= 5) return result;
 
-            Console.SetCursorPosition(errorPosition, Console.CursorTop - 1);
+            SetCursorPosition(errorPosition, CursorTop - 1);
             WriteLine($"{ErrorColor} Error: Enter choice between {choiceStart} " +
-                              $"and {choiceEnd}  {ResetColor}");
+                      $"and {choiceEnd}  {ResetColor}");
             return 0;
         }
 
         catch
         {
-            Console.SetCursorPosition(errorPosition, Console.CursorTop - 1);
-            WriteLine($"{ErrorColor} Please enter a valid choice between " +
-                              $"{choiceStart} and {choiceEnd} . {ResetColor}");
+            SetCursorPosition(errorPosition, CursorTop - 1);
+            WriteLine(
+                $"{ErrorColor} Please enter a valid choice between {choiceStart}" +
+                $" and  {choiceEnd} . {ResetColor}");
             return 0;
         }
     }
@@ -133,10 +134,10 @@ public static class Utility
 
     public static string[] CaptureInputs()
     {
-        Console.Write("  Enter value for a\t:  ");
-        string firstNumber = Console.ReadLine() ?? " ";
-        Console.Write("  Enter value for b\t:  ");
-        string secondNumber = Console.ReadLine() ?? " ";
+        Write("  Enter value for a\t:  ");
+        string firstNumber = ReadLine() ?? " ";
+        Write("  Enter value for b\t:  ");
+        string secondNumber = ReadLine() ?? " ";
 
         return [firstNumber, secondNumber];
     }

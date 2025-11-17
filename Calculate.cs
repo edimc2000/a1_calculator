@@ -18,8 +18,7 @@ public class Calculate()
         try
         {
             WriteLine(
-                $" Addition :\t{double.Parse(number1)} + {double.Parse(number2)} = " +
-                $"{double.Parse(number1) + double.Parse(number2)}");
+                $" Addition :\t{double.Parse(number1)} + {double.Parse(number2)} = {double.Parse(number1) + double.Parse(number2)}");
         }
         catch
         {
@@ -42,8 +41,7 @@ public class Calculate()
         try
         {
             WriteLine(
-                $" Subtraction :\t{double.Parse(number1)} - {double.Parse(number2)} = " +
-                $"{double.Parse(number1) - double.Parse(number2)}");
+                $" Subtraction :\t{double.Parse(number1)} - {double.Parse(number2)} = {double.Parse(number1) - double.Parse(number2)}");
         }
         catch
         {
@@ -64,8 +62,7 @@ public class Calculate()
         try
         {
             WriteLine(
-                $" Subtraction :\t{double.Parse(number1)} * {double.Parse(number2)} = " +
-                $"{double.Parse(number1) * double.Parse(number2)}");
+                $" Multiplication :\t{double.Parse(number1)} * {double.Parse(number2)} = {double.Parse(number1) * double.Parse(number2)}");
         }
         catch
         {
@@ -86,8 +83,7 @@ public class Calculate()
         try
         {
             WriteLine(
-                $" Subtraction :\t{double.Parse(number1)} / {double.Parse(number2)} = " +
-                $"{double.Parse(number1) / double.Parse(number2)}");
+                $" Subtraction :\t{double.Parse(number1)} / {double.Parse(number2)} = {double.Parse(number1) / double.Parse(number2)}");
         }
         catch
         {
@@ -108,8 +104,8 @@ public class Calculate()
 
         try
         {
-            WriteLine($" Power :\t{Double.Parse(number1)} ^ {Double.Parse(number2)} = " +
-                              $"{Math.Pow(Double.Parse(number1), Double.Parse(number2))}");
+            WriteLine($" Subtraction :\t{double.Parse(number1)} ^ {double.Parse(number2)} = " +
+                      $"{Math.Pow(double.Parse(number1), double.Parse(number2))}");
         }
         catch
         {
