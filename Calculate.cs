@@ -17,7 +17,7 @@ public class Calculate()
 
         try
         {
-            Console.WriteLine(
+            WriteLine(
                 $" Addition :\t{double.Parse(number1)} + {double.Parse(number2)} = {double.Parse(number1) + double.Parse(number2)}");
         }
         catch
@@ -38,7 +38,7 @@ public class Calculate()
 
         try
         {
-            Console.WriteLine(
+            WriteLine(
                 $" Subtraction :\t{double.Parse(number1)} - {double.Parse(number2)} = {double.Parse(number1) - double.Parse(number2)}");
         }
         catch
@@ -59,8 +59,8 @@ public class Calculate()
 
         try
         {
-            Console.WriteLine(
-                $" Subtraction :\t{double.Parse(number1)} * {double.Parse(number2)} = {double.Parse(number1) * double.Parse(number2)}");
+            WriteLine(
+                $" Multiplication :\t{double.Parse(number1)} * {double.Parse(number2)} = {double.Parse(number1) * double.Parse(number2)}");
         }
         catch
         {
@@ -80,7 +80,7 @@ public class Calculate()
 
         try
         {
-            Console.WriteLine(
+            WriteLine(
                 $" Subtraction :\t{double.Parse(number1)} / {double.Parse(number2)} = {double.Parse(number1) / double.Parse(number2)}");
         }
         catch
@@ -102,8 +102,8 @@ public class Calculate()
 
         try
         {
-            //Console.WriteLine($" Subtraction :\t{Double.Parse(number1)} ^ {Double.Parse(number2)}
-            // = {Math.Pow(Double.Parse(number1), Double.Parse(number2))}");
+            WriteLine($" Subtraction :\t{double.Parse(number1)} ^ {double.Parse(number2)} = " +
+                      $"{Math.Pow(double.Parse(number1), double.Parse(number2))}");
         }
         catch
         {
