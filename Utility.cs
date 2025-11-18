@@ -233,6 +233,34 @@ public static class Utility
     }
 
 
+    public static int MathOperation(bool isLooping, int attemptCounter, int maxAttempt)
+    {
+        while (!isLooping)
+        {
+            string choice = Utility.OperationChoice();
+            int operation = Utility.ValidateInput(choice, 1, 5);
+            attemptCounter++;
+
+            if (operation != 0)
+            {
+                isLooping = true;
+                return operation;
+            }
+
+            if (attemptCounter >= maxAttempt)
+            {
+                isLooping = true;
+                //SetCursorPosition(29, CursorTop);
+                WriteLine(
+                    $"{Utility.ErrorColor} Maximum number of attempts has been reached. " +
+                    $"{attemptCounter} / {maxAttempt} {Utility.ResetColor}");
+            }
+        }
+
+        return 0;
+    }
+
+
     public static void PrintResult(string title, string sign, string num1, string num2)
     {
         double result = 0;
