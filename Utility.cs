@@ -54,27 +54,40 @@ public static class Utility
 
     public static int ValidateInput(string input, int choiceStart, int choiceEnd)
     {
-        const int errorPosition = 29;
-
         try
         {
             int result = Convert.ToInt32(input);
             if (result is >= 1 and <= 5)
                 return result;
 
-            //SetCursorPosition(errorPosition, CursorTop);
-            WriteLine($"{ErrorColor} Error: fffEnter choice between {choiceStart} " +
-                      $"and {choiceEnd}  {ResetColor}");
+            DisplayInputError(choiceStart.ToString(),
+                choiceEnd.ToString(),
+                "menu");
             return 0;
         }
 
         catch
         {
-            //SetCursorPosition(errorPosition, CursorTop);
-            WriteLine($"{ErrorColor} Please e'''nter a valid choice between " +
-                      $"{choiceStart} and {choiceEnd}. {ResetColor}");
+            DisplayInputError(choiceStart.ToString(),
+                choiceEnd.ToString(),
+                "menu");
             return 0;
         }
+    }
+
+
+    // overload 
+    public static string ValidateInput(string input)
+    {
+        const int errorPosition = 29;
+
+        string result = input;
+
+        if (result is "Y" or "N")
+            return result;
+
+        DisplayInputError("", "", "tryAgain");
+        return "false";
     }
 
 
@@ -86,54 +99,12 @@ public static class Utility
         {
             Write("  Try Again (Y/N)\t: ");
             response = (ReadLine() ?? "100").ToUpper();
-            if (ValidateInput(response) == "false")
-            {
-            }
-            else
-            {
-                WriteLine("****" + isLooping);
-
-                WriteLine("****" + response);
-                isLooping = false;
-                WriteLine("****" + isLooping);
-                break;
-            }
+            if (ValidateInput(response) != "false") break;
         }
-
 
         return response;
     }
 
-
-    // overload 
-    public static string ValidateInput(string input)
-    {
-        const int errorPosition = 29;
-
-        WriteLine("----" + input);
-        //try
-        //{
-        string result = input;
-        if (result is "Y" or "N")
-        {
-            WriteLine("----" + result);
-            return result;
-        }
-
-        //SetCursorPosition(errorPosition, CursorTop - 1);
-        WriteLine($"{ErrorColor} Error: Enter choice between 'Y' " +
-                  $"and 'N'  {ResetColor}");
-        return "false";
-        //}
-
-        //catch
-        //{
-        //    Console.SetCursorPosition(errorPosition, Console.CursorTop - 1);
-        //    WriteLine($"{ErrorColor} Please enter a valid choice between " +
-        //              $"'Y and 'N' . {ResetColor}");
-        //    return input;
-        //}
-    }
 
     public static void DisplayTitle(string title, string cover)
     {
@@ -203,13 +174,40 @@ public static class Utility
     }
 
 
-    public static void DisplayInputError(string number1, string number2)
+    public static void DisplayInputError(string number1, string number2, string errorType)
     {
-        const string errorLine1 = "Error: Unable to perform operation with the given inputs: ";
-        const string errorLine2 = "Expected: Both inputs should be of the same type - numbers.";
+        switch (errorType)
+        {
+            case "menu":
+            {
+                WriteLine($"{ErrorColor} Please enter a valid choice between " +
+                          $"{number1} and {number2}. {ResetColor}\n");
+                break;
+            }
 
-        WriteLine($"\n{ErrorColor} {errorLine1} `{number1}` and `{number2}`. {ResetColor}");
-        WriteLine($"{ErrorColor} {errorLine2} {ResetColor}");
+            case "tryAgain":
+            {
+                WriteLine($"{ErrorColor} Error: Enter choice between 'Y' and 'N'  {ResetColor}\n");
+                break;
+            }
+
+            case "operate":
+            {
+                const string errorLine1 =
+                    "Error: Unable to perform operation with the given inputs: ";
+                const string errorLine2 =
+                    "Expected: Both inputs should be of the same type - numbers.";
+
+                WriteLine($"\n{ErrorColor} {errorLine1} `{number1}` and `{number2}`. {ResetColor}");
+                WriteLine($"{ErrorColor} {errorLine2} {ResetColor}\n");
+                break;
+            }
+
+            default:
+            {
+                break;
+            }
+        }
     }
 
 
@@ -237,8 +235,8 @@ public static class Utility
     {
         while (!isLooping)
         {
-            string choice = Utility.OperationChoice();
-            int operation = Utility.ValidateInput(choice, 1, 5);
+            string choice = OperationChoice();
+            int operation = ValidateInput(choice, 1, 5);
             attemptCounter++;
 
             if (operation != 0)
@@ -252,53 +250,11 @@ public static class Utility
                 isLooping = true;
                 //SetCursorPosition(29, CursorTop);
                 WriteLine(
-                    $"{Utility.ErrorColor} Maximum number of attempts has been reached. " +
-                    $"{attemptCounter} / {maxAttempt} {Utility.ResetColor}");
+                    $"{ErrorColor} Maximum number of attempts has been reached. " +
+                    $"{attemptCounter} / {maxAttempt} {ResetColor}");
             }
         }
 
         return 0;
-    }
-
-
-    public static void PrintResult(string title, string sign, string num1, string num2)
-    {
-        double result = 0;
-        const int ALIGN = -22;
-
-        switch (sign)
-        {
-            case "+":
-                result = double.Parse(num1) + double.Parse(num2);
-                break;
-            case "-":
-                result = double.Parse(num1) - double.Parse(num2);
-                break;
-            case "*":
-                result = double.Parse(num1) * double.Parse(num2);
-
-                break;
-            case "/":
-                result = double.Parse(num1) / double.Parse(num2);
-                break;
-            case "^":
-                result = Math.Pow(double.Parse(num1), double.Parse(num2));
-                break;
-
-            default:
-                break;
-        }
-
-
-        WriteLine(string.Format(
-            " {0} {1, " + ALIGN + "}: {2} {3} {4} = {5} {6}\n",
-            ResultColor,
-            title,
-            double.Parse(num1),
-            sign,
-            double.Parse(num2),
-            FormatNumber(result),
-            ResetColor
-        ));
     }
 }

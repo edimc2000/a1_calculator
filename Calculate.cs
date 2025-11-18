@@ -10,16 +10,15 @@ public class Calculate()
         Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
-        string number1 = inputs[0];
-        string number2 = inputs[1];
+
 
         try
         {
-            Utility.PrintResult(title, operatorSign, number1, number2);
+            PrintResult(title, operatorSign, inputs[0], inputs[1]);
         }
         catch
         {
-            Utility.DisplayInputError(number1, number2);
+            Utility.DisplayInputError(inputs[0], inputs[1], "operate");
         }
     }
 
@@ -31,16 +30,15 @@ public class Calculate()
         Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
-        string number1 = inputs[0];
-        string number2 = inputs[1];
+
 
         try
         {
-            Utility.PrintResult(title, operatorSign, number1, number2);
+            PrintResult(title, operatorSign, inputs[0], inputs[1]);
         }
         catch
         {
-            Utility.DisplayInputError(number1, number2);
+            Utility.DisplayInputError(inputs[0], inputs[1],"operate");
         }
     }
 
@@ -52,16 +50,15 @@ public class Calculate()
         Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
-        string number1 = inputs[0];
-        string number2 = inputs[1];
+
 
         try
         {
-            Utility.PrintResult(title, operatorSign, number1, number2);
+            PrintResult(title, operatorSign, inputs[0], inputs[1]);
         }
         catch
         {
-            Utility.DisplayInputError(number1, number2);
+            Utility.DisplayInputError(inputs[0], inputs[1], "operate");
         }
     }
 
@@ -73,22 +70,20 @@ public class Calculate()
         Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
-        string number1 = inputs[0];
-        string number2 = inputs[1];
 
         try
         {
-            if (number2.Equals("0"))
+            if (inputs[1].Equals("0"))
                 WriteLine(
                     $" {Utility.ErrorColor} Error: Value for b (divisor) should not " +
                     $"be zero {Utility.ResetColor}\n");
 
             else
-                Utility.PrintResult(title, operatorSign, number1, number2);
+                PrintResult(title, operatorSign, inputs[0], inputs[1]);
         }
         catch
         {
-            Utility.DisplayInputError(number1, number2);
+            Utility.DisplayInputError(inputs[0], inputs[1], "operate");
         }
     }
 
@@ -101,16 +96,56 @@ public class Calculate()
         Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
-        string number1 = inputs[0];
-        string number2 = inputs[1];
 
         try
         {
-            Utility.PrintResult(title, operatorSign, number1, number2);
+            PrintResult(title, operatorSign, inputs[0], inputs[1]);
         }
         catch
         {
-            Utility.DisplayInputError(number1, number2);
+            Utility.DisplayInputError(inputs[0], inputs[1], "operate");
         }
+    }
+
+
+    private static void PrintResult(string title, string sign, string num1, string num2)
+    {
+        double result = 0;
+        const int ALIGN = -22;
+
+        switch (sign)
+        {
+            case "+":
+                result = double.Parse(num1) + double.Parse(num2);
+                break;
+            case "-":
+                result = double.Parse(num1) - double.Parse(num2);
+                break;
+            case "*":
+                result = double.Parse(num1) * double.Parse(num2);
+
+                break;
+            case "/":
+                result = double.Parse(num1) / double.Parse(num2);
+                break;
+            case "^":
+                result = Math.Pow(double.Parse(num1), double.Parse(num2));
+                break;
+
+            default:
+                break;
+        }
+
+
+        WriteLine(string.Format(
+            " {0} {1, " + ALIGN + "}: {2} {3} {4} = {5} {6}\n",
+            Utility.ResultColor,
+            title,
+            double.Parse(num1),
+            sign,
+            double.Parse(num2),
+            Utility.FormatNumber(result),
+            Utility.ResetColor
+        ));
     }
 }
