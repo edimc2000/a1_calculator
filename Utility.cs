@@ -1,5 +1,4 @@
-﻿
-namespace Calculator;
+﻿namespace Calculator;
 
 internal enum Operation
 {
@@ -17,6 +16,9 @@ public static class Utility
 
     // set white background and red foreground
     public const string ErrorColor = "\e[48;2;255;255;255;38;2;255;0;0m";
+
+    // set white background and red foreground
+    public const string ResultColor = "\e[48;2;255;255;255;38;2;0;128;0m";
 
     // light blue
     public const string BackgroundColor = "\e[48;2;26;132;184m";
@@ -44,8 +46,8 @@ public static class Utility
 
     public static string OperationChoice()
     {
-        Console.Write("  Enter your choice \t: ");
-        string response = Console.ReadLine() ?? "100";
+        Write("  Enter your choice \t: ");
+        string response = ReadLine() ?? "100";
         return response;
     }
 
@@ -60,19 +62,77 @@ public static class Utility
             if (result is >= 1 and <= 5)
                 return result;
 
-            Console.SetCursorPosition(errorPosition, Console.CursorTop - 1);
-            WriteLine($"{ErrorColor} Error: Enter choice between {choiceStart} " +
-                              $"and {choiceEnd}  {ResetColor}");
+            //SetCursorPosition(errorPosition, CursorTop);
+            WriteLine($"{ErrorColor} Error: fffEnter choice between {choiceStart} " +
+                      $"and {choiceEnd}  {ResetColor}");
             return 0;
         }
 
         catch
         {
-            Console.SetCursorPosition(errorPosition, Console.CursorTop - 1);
-            WriteLine($"{ErrorColor} Please enter a valid choice between " +
-                              $"{choiceStart} and {choiceEnd} . {ResetColor}");
+            //SetCursorPosition(errorPosition, CursorTop);
+            WriteLine($"{ErrorColor} Please e'''nter a valid choice between " +
+                      $"{choiceStart} and {choiceEnd}. {ResetColor}");
             return 0;
         }
+    }
+
+
+    public static string TryAgain()
+    {
+        bool isLooping = true;
+        string response = "";
+        while (isLooping)
+        {
+            Write("  Try Again (Y/N)\t: ");
+            response = (ReadLine() ?? "100").ToUpper();
+            if (ValidateInput(response) == "false")
+            {
+            }
+            else
+            {
+                WriteLine("****" + isLooping);
+
+                WriteLine("****" + response);
+                isLooping = false;
+                WriteLine("****" + isLooping);
+                break;
+            }
+        }
+
+
+        return response;
+    }
+
+
+    // overload 
+    public static string ValidateInput(string input)
+    {
+        const int errorPosition = 29;
+
+        WriteLine("----" + input);
+        //try
+        //{
+        string result = input;
+        if (result is "Y" or "N")
+        {
+            WriteLine("----" + result);
+            return result;
+        }
+
+        //SetCursorPosition(errorPosition, CursorTop - 1);
+        WriteLine($"{ErrorColor} Error: Enter choice between 'Y' " +
+                  $"and 'N'  {ResetColor}");
+        return "false";
+        //}
+
+        //catch
+        //{
+        //    Console.SetCursorPosition(errorPosition, Console.CursorTop - 1);
+        //    WriteLine($"{ErrorColor} Please enter a valid choice between " +
+        //              $"'Y and 'N' . {ResetColor}");
+        //    return input;
+        //}
     }
 
     public static void DisplayTitle(string title, string cover)
@@ -134,10 +194,10 @@ public static class Utility
 
     public static string[] CaptureInputs()
     {
-        Console.Write("  Enter value for a\t:  ");
-        string firstNumber = Console.ReadLine() ?? " ";
-        Console.Write("  Enter value for b\t:  ");
-        string secondNumber = Console.ReadLine() ?? " ";
+        Write("\n  Enter value for a\t:  ");
+        string firstNumber = ReadLine() ?? " ";
+        Write("  Enter value for b\t:  ");
+        string secondNumber = ReadLine() ?? " ";
 
         return [firstNumber, secondNumber];
     }
@@ -162,5 +222,55 @@ public static class Utility
         WriteLine(PrintCenteredTitle("", 45));
         WriteLine(PrintCenteredTitle(formula, 45));
         DisplayTitle("", "bottom");
+    }
+
+    public static string FormatNumber(double result)
+    {
+        if (result % 1 == 0)
+            return result.ToString("0");
+        else
+            return result.ToString("0.0000");
+    }
+
+
+    public static void PrintResult(string title, string sign, string num1, string num2)
+    {
+        double result = 0;
+        const int ALIGN = -22;
+
+        switch (sign)
+        {
+            case "+":
+                result = double.Parse(num1) + double.Parse(num2);
+                break;
+            case "-":
+                result = double.Parse(num1) - double.Parse(num2);
+                break;
+            case "*":
+                result = double.Parse(num1) * double.Parse(num2);
+
+                break;
+            case "/":
+                result = double.Parse(num1) / double.Parse(num2);
+                break;
+            case "^":
+                result = Math.Pow(double.Parse(num1), double.Parse(num2));
+                break;
+
+            default:
+                break;
+        }
+
+
+        WriteLine(string.Format(
+            " {0} {1, " + ALIGN + "}: {2} {3} {4} = {5} {6}\n",
+            ResultColor,
+            title,
+            double.Parse(num1),
+            sign,
+            double.Parse(num2),
+            FormatNumber(result),
+            ResetColor
+        ));
     }
 }

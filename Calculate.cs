@@ -1,12 +1,12 @@
-﻿
-namespace Calculator;
+﻿namespace Calculator;
 
 public class Calculate()
 {
     public static void Add()
     {
-        string title = "Addition";
-        string formula = "  Formula: sum = a + b ";
+        const string title = "Addition";
+        const string operatorSign = "+";
+        const string formula = "  Formula: sum = a + b ";
         Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
@@ -15,22 +15,19 @@ public class Calculate()
 
         try
         {
-            WriteLine(
-                $" Addition :\t{double.Parse(number1)} + {double.Parse(number2)} = " +
-                $"{double.Parse(number1) + double.Parse(number2)}");
+            Utility.PrintResult(title, operatorSign, number1, number2);
         }
         catch
         {
             Utility.DisplayInputError(number1, number2);
         }
-
-
     }
 
     public static void Subtract()
     {
-        string title = "Subtraction";
-        string formula = "Formula: difference = a - b";
+        const string title = "Subtraction";
+        const string operatorSign = "-";
+        const string formula = "Formula: difference = a - b";
         Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
@@ -39,9 +36,7 @@ public class Calculate()
 
         try
         {
-            WriteLine(
-                $" Subtraction :\t{double.Parse(number1)} - {double.Parse(number2)} = " +
-                $"{double.Parse(number1) - double.Parse(number2)}");
+            Utility.PrintResult(title, operatorSign, number1, number2);
         }
         catch
         {
@@ -51,8 +46,9 @@ public class Calculate()
 
     public static void Multiply()
     {
-        string title = "Multiplication";
-        string formula = "Formula: product = a * b";
+        const string title = "Multiplication";
+        const string operatorSign = "*";
+        const string formula = "Formula: product = a * b";
         Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
@@ -61,9 +57,7 @@ public class Calculate()
 
         try
         {
-            WriteLine(
-                $" Subtraction :\t{double.Parse(number1)} * {double.Parse(number2)} = " +
-                $"{double.Parse(number1) * double.Parse(number2)}");
+            Utility.PrintResult(title, operatorSign, number1, number2);
         }
         catch
         {
@@ -73,8 +67,9 @@ public class Calculate()
 
     public static void Divide()
     {
-        string title = "Division";
-        string formula = "Formula: quotient = a / b";
+        const string title = "Division";
+        const string operatorSign = "/";
+        const string formula = "Formula: quotient = a / b";
         Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
@@ -83,9 +78,13 @@ public class Calculate()
 
         try
         {
-            WriteLine(
-                $" Subtraction :\t{double.Parse(number1)} / {double.Parse(number2)} = " +
-                $"{double.Parse(number1) / double.Parse(number2)}");
+            if (number2.Equals("0"))
+                WriteLine(
+                    $" {Utility.ErrorColor} Error: Value for b (divisor) should not " +
+                    $"be zero {Utility.ResetColor}\n");
+
+            else
+                Utility.PrintResult(title, operatorSign, number1, number2);
         }
         catch
         {
@@ -96,8 +95,9 @@ public class Calculate()
 
     public static void Power()
     {
-        string title = "Exponentiation";
-        string formula = "Formula: result = a ^ b";
+        const string title = "Exponentiation";
+        const string operatorSign = "^";
+        const string formula = "Formula: result = a ^ b";
         Utility.DisplayTitleAndFormula(title, formula);
 
         string[] inputs = Utility.CaptureInputs();
@@ -106,8 +106,7 @@ public class Calculate()
 
         try
         {
-            WriteLine($" Power :\t{Double.Parse(number1)} ^ {Double.Parse(number2)} = " +
-                              $"{Math.Pow(Double.Parse(number1), Double.Parse(number2))}");
+            Utility.PrintResult(title, operatorSign, number1, number2);
         }
         catch
         {

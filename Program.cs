@@ -4,24 +4,35 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        bool runApp = true;
 
-        
-        bool validInput = false;
-        int attemptCounter = 0;
-        int maxAttempt = 5;
-        Utility.DisplayTitle("Calculator", "all");
-        Utility.OperationMenu();
-
-        int operationToPerform = MathOperation(validInput, attemptCounter, maxAttempt);
-
-        if (operationToPerform == 0)
+        while (runApp)
         {
-            Environment.Exit(0);
-        }
-        WriteLine($"operationToPerform \t: {operationToPerform}");
-        WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
+            bool validInput = false;
+            int attemptCounter = 0;
+            int maxAttempt = 5;
+            Utility.DisplayTitle("Calculator", "all");
+            Utility.OperationMenu();
 
-        CallCalculate(operationToPerform);
+            int operationToPerform = MathOperation(validInput, attemptCounter, maxAttempt);
+
+            if (operationToPerform == 0)
+            {
+                WriteLine("x");
+                //Environment.Exit(0);
+                return;
+            }
+
+            //WriteLine($"operationToPerform \t: {operationToPerform}");
+            //WriteLine($"Chosen operator \t: {(Operation)operationToPerform - 1}");
+
+            CallCalculate(operationToPerform);
+            string anotherRound = Utility.TryAgain();
+
+            if (anotherRound == "N") return;
+
+            if (anotherRound == "Y") WriteLine("y0y0");
+        }
     }
 
     private static int MathOperation(bool isLooping, int attemptCounter, int maxAttempt)
@@ -72,6 +83,28 @@ public class Program
                 break;
             default:
                 break;
+        }
+    }
+
+
+    // Add this method for testing purposes only
+    public static string RunWithInputs(params string[] inputs)
+    {
+        var originalIn = Console.In;
+        try
+        {
+            Console.SetIn(new StringReader(string.Join(Environment.NewLine, inputs)));
+            var originalOut = Console.Out;
+            using var writer = new StringWriter();
+            Console.SetOut(writer);
+
+            Main(Array.Empty<string>());
+
+            return writer.ToString();
+        }
+        finally
+        {
+            Console.SetIn(originalIn);
         }
     }
 }
