@@ -9,7 +9,7 @@ public class Calculate()
         const string formula = "  Formula: sum = a + b ";
         Utility.DisplayTitleAndFormula(title, formula);
 
-        string[] inputs = Utility.CaptureInputs();
+        string[] inputs = CaptureInputs();
 
 
         try
@@ -29,7 +29,7 @@ public class Calculate()
         const string formula = "Formula: difference = a - b";
         Utility.DisplayTitleAndFormula(title, formula);
 
-        string[] inputs = Utility.CaptureInputs();
+        string[] inputs = CaptureInputs();
 
 
         try
@@ -49,7 +49,7 @@ public class Calculate()
         const string formula = "Formula: product = a * b";
         Utility.DisplayTitleAndFormula(title, formula);
 
-        string[] inputs = Utility.CaptureInputs();
+        string[] inputs = CaptureInputs();
 
 
         try
@@ -69,14 +69,14 @@ public class Calculate()
         const string formula = "Formula: quotient = a / b";
         Utility.DisplayTitleAndFormula(title, formula);
 
-        string[] inputs = Utility.CaptureInputs();
+        string[] inputs = CaptureInputs();
 
         try
         {
             if (inputs[1].Equals("0"))
                 WriteLine(
-                    $" {Utility.ErrorColor} Error: Value for b (divisor) should not " +
-                    $"be zero {Utility.ResetColor}\n");
+                    $" {Formats.ErrorColor} Error: Value for b (divisor) should not " +
+                    $"be zero {Formats.ResetColor}\n");
 
             else
                 PrintResult(title, operatorSign, inputs[0], inputs[1]);
@@ -95,7 +95,7 @@ public class Calculate()
         const string formula = "Formula: result = a ^ b";
         Utility.DisplayTitleAndFormula(title, formula);
 
-        string[] inputs = Utility.CaptureInputs();
+        string[] inputs = CaptureInputs();
 
         try
         {
@@ -139,13 +139,25 @@ public class Calculate()
 
         WriteLine(string.Format(
             " {0} {1, " + ALIGN + "}: {2} {3} {4} = {5} {6}\n",
-            Utility.ResultColor,
+            Formats.ResultColor,
             title,
             double.Parse(num1),
             sign,
             double.Parse(num2),
             Utility.FormatNumber(result),
-            Utility.ResetColor
+            Formats.ResetColor
         ));
     }
+
+    private static string[] CaptureInputs()
+    {
+        Write("\n  Enter value for a\t:  ");
+        string firstNumber = ReadLine() ?? " ";
+
+        Write("  Enter value for b\t:  ");
+        string secondNumber = ReadLine() ?? " ";
+
+        return [firstNumber, secondNumber];
+    }
+
 }

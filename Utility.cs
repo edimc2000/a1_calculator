@@ -11,20 +11,20 @@ internal enum Operation
 
 public static class Utility
 {
-    // reset background and foreground console colors
-    public const string ResetColor = "\e[0m";
+    //// reset background and foreground console colors
+    //public const string ResetColor = "\e[0m";
 
-    // set white background and red foreground
-    public const string ErrorColor = "\e[48;2;255;255;255;38;2;255;0;0m";
+    //// set white background and red foreground
+    //public const string ErrorColor = "\e[48;2;255;255;255;38;2;255;0;0m";
 
-    // set white background and red foreground
-    public const string ResultColor = "\e[48;2;255;255;255;38;2;0;128;0m";
+    //// set white background and red foreground
+    //public const string ResultColor = "\e[48;2;255;255;255;38;2;0;128;0m";
 
-    // light blue
-    public const string BackgroundColor = "\e[48;2;26;132;184m";
+    //// light blue
+    //public const string BackgroundColor = "\e[48;2;26;132;184m";
 
-    // white
-    public const string ForegroundColor = "\e[37m";
+    //// white
+    //public const string ForegroundColor = "\e[37m";
 
     public static void OperationMenu()
     {
@@ -153,7 +153,7 @@ public static class Utility
 
     public static void ApplyHighlighter(string text)
     {
-        text = BackgroundColor + ForegroundColor + text + ResetColor;
+        text = Formats.BackgroundColor + Formats.ForegroundColor + text + Formats.ResetColor;
         WriteLine(text);
     }
 
@@ -163,15 +163,6 @@ public static class Utility
         return double.TryParse(input, out result);
     }
 
-    public static string[] CaptureInputs()
-    {
-        Write("\n  Enter value for a\t:  ");
-        string firstNumber = ReadLine() ?? " ";
-        Write("  Enter value for b\t:  ");
-        string secondNumber = ReadLine() ?? " ";
-
-        return [firstNumber, secondNumber];
-    }
 
 
     public static void DisplayInputError(string number1, string number2, string errorType)
@@ -180,14 +171,14 @@ public static class Utility
         {
             case "menu":
             {
-                WriteLine($"{ErrorColor} Please enter a valid choice between " +
-                          $"{number1} and {number2}. {ResetColor}\n");
+                WriteLine($"{Formats.ErrorColor} Please enter a valid choice between " +
+                          $"{number1} and {number2}. {Formats.ResetColor}\n");
                 break;
             }
 
             case "tryAgain":
             {
-                WriteLine($"{ErrorColor} Error: Enter choice between 'Y' and 'N'  {ResetColor}\n");
+                WriteLine($"{Formats.ErrorColor} Error: Enter choice between 'Y' and 'N'  {Formats.ResetColor}\n");
                 break;
             }
 
@@ -198,8 +189,8 @@ public static class Utility
                 const string errorLine2 =
                     "Expected: Both inputs should be of the same type - numbers.";
 
-                WriteLine($"\n{ErrorColor} {errorLine1} `{number1}` and `{number2}`. {ResetColor}");
-                WriteLine($"{ErrorColor} {errorLine2} {ResetColor}\n");
+                WriteLine($"\n{Formats.ErrorColor} {errorLine1} `{number1}` and `{number2}`. {Formats.ResetColor}");
+                WriteLine($"{Formats.ErrorColor} {errorLine2} {Formats.ResetColor}\n");
                 break;
             }
 
@@ -250,8 +241,8 @@ public static class Utility
                 isLooping = true;
                 //SetCursorPosition(29, CursorTop);
                 WriteLine(
-                    $"{ErrorColor} Maximum number of attempts has been reached. " +
-                    $"{attemptCounter} / {maxAttempt} {ResetColor}");
+                    $"{Formats.ErrorColor} Maximum number of attempts has been reached. " +
+                    $"{attemptCounter} / {maxAttempt} {Formats.ResetColor}");
             }
         }
 
