@@ -9,9 +9,21 @@
 /// <para>Version: 1.0</para>
 /// <para>Since: 2025-11-09</para>
 /// </remarks>
-
 public static class Calculate
 {
+    /// <summary> Performs multiplication of two numbers. </summary>
+    /// <param name="number1">The first operand for multiplication.</param>
+    /// <param name="number2">The second operand for multiplication.</param>
+    /// <returns>The product of number1 and number2.</returns>
+    /// created to comply with the requirement on reusing the Multiply method 
+    public static double Multiply(double number1, double number2)
+    {
+        return number1 * number2;
+    }
+
+
+
+
     /// <summary>Performs addition of two numbers</summary>
     public static void Add()
     {
@@ -42,6 +54,7 @@ public static class Calculate
 
         Run(title, formula, operatorSymbol);
     }
+
 
     /// <summary>Performs division of two numbers with zero-division protection</summary>
     public static void Divide()
@@ -84,7 +97,7 @@ public static class Calculate
     private static void PrintResult
         (string title, string sign, string firstOperand, string secondOperand)
     {
-        double result = 0;
+        double result = 1;
         const int resultLeftAlignment = -22;
 
         switch (sign)
@@ -103,8 +116,22 @@ public static class Calculate
                 result = double.Parse(firstOperand) / double.Parse(secondOperand);
                 break;
             case "^":
-                result = Math.Pow(double.Parse(firstOperand), double.Parse(secondOperand));
+
+                result = 1; 
+                double number1 = double.Parse(firstOperand);
+                double number2 = double.Parse(secondOperand);
+
+                // if block created to comply with the requirement on reusing the Multiply method,
+                // not necessary on real application 
+                if (number1 % 1 == 0 && number1 > 0 && number2 % 1 == 0 && number2 > 0)
+                {
+                    for (int i = 0; i < number2; i++) result = Multiply(result, number1);
+                    break; 
+                }
+
+                result = Math.Pow(number1, number2);
                 break;
+
 
             default:
                 break;
@@ -145,7 +172,6 @@ public static class Calculate
 
                     else
                         PrintResult(title, operatorSymbol, userInputs[0], userInputs[1]);
-                    
                 }
                 catch
                 {
