@@ -48,7 +48,7 @@ Exponentiation
 
 Division by zero
 
-![Division by zero error](screenshots/exponentiation.png)
+![Division by zero error](screenshots/divisionbyzero.png)
 
 Error - Try Again - invalid choice, re prompt
 
