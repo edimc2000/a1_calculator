@@ -1,32 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Calculator;
 
-namespace Calculator;
-
-/**
- * AnsiColorCodes.cs
- * Provides ANSI escape code constants for console text formatting and coloring.
- *
- * @author Eddie C.
- * @version 1.0
- * @since 2025-11-09
- */
-
+/// <summary>ANSI escape codes for console coloring</summary>
+/// <para>Author: Eddie C.</para>
+/// <para>Version: 1.0</para>
+/// <para>Since: 2025-11-09</para>
 internal static class AnsiColorCodes
 {
-    /* Reset the background and foreground console colors to default */
+    /// <summary>Reset colors to default</summary>
     public const string Reset = "\e[0m";
 
-    /* Red font and white background for error messages */
+    /// <summary> Red font and white background for error messages</summary>
     public const string Error = "\e[48;2;255;255;255;38;2;255;0;0m";
 
-    /* Green font and white background for results */
+    /// <summary>Green font and white background for results </summary>
     public const string Result = "\e[48;2;255;255;255;38;2;0;128;0m";
 
-    /* Light blue background color */
+    /// <summary> Light blue background color </summary>
     public const string Background = "\e[48;2;26;132;184m";
 
-    /* White foreground color */
+    /// <summary> White foreground color </summary>
     public const string Foreground = "\e[37m";
 }
