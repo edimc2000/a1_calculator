@@ -23,7 +23,7 @@ How the project is organised
 # Screenshots
 
 The Menu
-![The Menu](/Calculator/screenshots/menu.png)
+![The Menu](screenshots/menu.png)
 
 Addition 
 
