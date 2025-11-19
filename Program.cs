@@ -8,13 +8,13 @@ public class Program
 
         while (runApp)
         {
-            bool validInput = false;
+            bool isValidInput = false;
             int attemptCounter = 0;
             int maxAttempt = 5;
             Utility.DisplayTitle("Calculator", "all");
             Utility.OperationMenu();
 
-            int operationToPerform = Utility.MathOperation(validInput, attemptCounter, maxAttempt);
+            int operationToPerform = Utility.MathOperation(isValidInput, attemptCounter, maxAttempt);
 
             if (operationToPerform == 0) return;
 

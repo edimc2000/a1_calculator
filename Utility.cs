@@ -11,7 +11,6 @@ internal enum Operation
 
 public static class Utility
 {
-
     public static void OperationMenu()
     {
         Operation[] operations = Enum.GetValues<Operation>();
@@ -62,33 +61,23 @@ public static class Utility
     }
 
 
-    // overload 
-    public static string ValidateInput(string input)
-    {
-        const int errorPosition = 29;
-
-        string result = input;
-
-        if (result is "Y" or "N")
-            return result;
-
-        DisplayInputError("", "", "tryAgain");
-        return "false";
-    }
-
-
     public static string TryAgain()
     {
-        bool isLooping = true;
-        string response = "";
-        while (isLooping)
+        while (true)
         {
             Write("  Try Again (Y/N)\t: ");
-            response = (ReadLine() ?? "100").ToUpper();
-            if (ValidateInput(response) != "false") break;
-        }
+            string response = (ReadLine() ?? "").Trim().ToUpper();
 
-        return response;
+            switch (response)
+            {
+                case "Y":
+                case "N":
+                    return response;
+                default:
+                    DisplayInputError("", "", "tryAgain");
+                    break;
+            }
+        }
     }
 
 
@@ -111,9 +100,6 @@ public static class Utility
                 ApplyHighlighter(top);
                 ApplyHighlighter(middle);
                 ApplyHighlighter(bottom);
-                break;
-
-            case "botton":
                 break;
 
             case "top":
@@ -150,7 +136,6 @@ public static class Utility
     }
 
 
-
     public static void DisplayInputError(string number1, string number2, string errorType)
     {
         switch (errorType)
@@ -164,7 +149,8 @@ public static class Utility
 
             case "tryAgain":
             {
-                WriteLine($"{AnsiColorCodes.Error} Error: Enter choice between 'Y' and 'N'  {AnsiColorCodes.Reset}\n");
+                WriteLine(
+                    $"{AnsiColorCodes.Error} Error: Enter choice between 'Y' and 'N'  {AnsiColorCodes.Reset}\n");
                 break;
             }
 
@@ -175,7 +161,8 @@ public static class Utility
                 const string errorLine2 =
                     "Expected: Both inputs should be of the same type - numbers.";
 
-                WriteLine($"\n{AnsiColorCodes.Error} {errorLine1} `{number1}` and `{number2}`. {AnsiColorCodes.Reset}");
+                WriteLine(
+                    $"\n{AnsiColorCodes.Error} {errorLine1} `{number1}` and `{number2}`. {AnsiColorCodes.Reset}");
                 WriteLine($"{AnsiColorCodes.Error} {errorLine2} {AnsiColorCodes.Reset}\n");
                 break;
             }
@@ -208,9 +195,9 @@ public static class Utility
     }
 
 
-    public static int MathOperation(bool isLooping, int attemptCounter, int maxAttempt)
+    public static int MathOperation(bool isValidInput, int attemptCounter, int maxAttempt)
     {
-        while (!isLooping)
+        while (!isValidInput)
         {
             string choice = OperationChoice();
             int operation = ValidateInput(choice, 1, 5);
@@ -218,13 +205,13 @@ public static class Utility
 
             if (operation != 0)
             {
-                isLooping = true;
+                isValidInput = true;
                 return operation;
             }
 
             if (attemptCounter >= maxAttempt)
             {
-                isLooping = true;
+                isValidInput = true;
                 //SetCursorPosition(29, CursorTop);
                 WriteLine(
                     $"{AnsiColorCodes.Error} Maximum number of attempts has been reached. " +
