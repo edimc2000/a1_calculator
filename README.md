@@ -23,18 +23,35 @@ How the project is organised
 # Screenshots
 
 The Menu
+
 ![The Menu](screenshots/menu.png)
 
 Addition 
-
+![Add](screenshots/addition.png)
 
 Subtraction
+![Subtarct](screenshots/subtraction.png)
 
 Multiplication 
+![Multiply](screenshots/multiplication.png)
 
 Division 
+![The Menu](screenshots/division.png)
 
 Exponentiation 
+![Exponentiation](screenshots/exponentiation.png)
+
+Division by zero
+![Division by zero error](screenshots/exponentiation.png)
+
+Error - Try Again - invalid choice, re prompt
+![Try Again - invalid choice re prompt](screenshots/tryagaininvalid.png)
+
+Error - Invalid Operands
+![Try Again - invalid choice re prompt](screenshots/invalidOperands.png)
+
+Error - Menu choice error and max attempt
+![Try Again - invalid choice re prompt](screenshots/maxattempt.png)
 
 
 ## Contact
