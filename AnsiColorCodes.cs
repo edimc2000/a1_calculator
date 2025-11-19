@@ -1,9 +1,12 @@
 ﻿namespace Calculator;
 
 /// <summary>ANSI escape codes for console coloring</summary>
+/// <remarks>
 /// <para>Author: Eddie C.</para>
 /// <para>Version: 1.0</para>
 /// <para>Since: 2025-11-09</para>
+/// </remarks>
+
 internal static class AnsiColorCodes
 {
     /// <summary>Reset colors to default</summary>

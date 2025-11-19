@@ -1,18 +1,18 @@
 ﻿namespace Calculator;
 
-/**
- * Calculate.cs
- * Provides static methods for mathematical operations including addition,
- * subtraction, multiplication, division, and exponentiation with comprehensive
- * user input handling and error management.
- *
- * @author Eddie C.
- * @version 1.1
- * @since 2025-11-09
- */
+/// <summary>
+/// Provides mathematical operations including addition, subtraction, multiplication,
+/// division, and exponentiation with user input handling and error management.
+/// </summary>
+/// <remarks>
+/// <para>Author: Eddie C.</para>
+/// <para>Version: 1.0</para>
+/// <para>Since: 2025-11-09</para>
+/// </remarks>
 
 public static class Calculate
 {
+    /// <summary>Performs addition of two numbers</summary>
     public static void Add()
     {
         const string title = "Addition";
@@ -22,6 +22,7 @@ public static class Calculate
         Run(title, formula, operatorSymbol);
     }
 
+    /// <summary>Performs subtraction of two numbers</summary>
     public static void Subtract()
     {
         const string title = "Subtraction";
@@ -31,6 +32,7 @@ public static class Calculate
         Run(title, formula, operatorSymbol);
     }
 
+    /// <summary>Performs multiplication of two numbers</summary>
     public static void Multiply()
     {
         const string title = "Multiplication";
@@ -41,6 +43,7 @@ public static class Calculate
         Run(title, formula, operatorSymbol);
     }
 
+    /// <summary>Performs division of two numbers with zero-division protection</summary>
     public static void Divide()
     {
         const string title = "Division";
@@ -50,7 +53,7 @@ public static class Calculate
         Run(title, formula, operatorSymbol);
     }
 
-
+    /// <summary>Performs exponentiation (a raised to the power of b)</summary>
     public static void Power()
     {
         const string title = "Exponentiation";
@@ -59,7 +62,8 @@ public static class Calculate
         Run(title, formula, operatorSymbol);
     }
 
-
+    /// <summary>Captures two inputs from the user via console</summary>
+    /// <returns>Array containing two input values as strings</returns>
     private static string[] CaptureInputs()
     {
         Write("\n  Enter value for a\t:  ");
@@ -71,7 +75,14 @@ public static class Calculate
         return [firstNumber, secondNumber];
     }
 
-    private static void PrintResult(string title, string sign, string firstOperand, string secondOperand)
+
+    /// <summary>Calculates and displays the result of a mathematical operation</summary>
+    /// <param name="title">The operation title</param>
+    /// <param name="sign">The operator symbol (+, -, *, /, ^)</param>
+    /// <param name="firstOperand">The first operand as string</param>
+    /// <param name="secondOperand">The second operand as string</param>
+    private static void PrintResult
+        (string title, string sign, string firstOperand, string secondOperand)
     {
         double result = 0;
         const int resultLeftAlignment = -22;
@@ -112,9 +123,10 @@ public static class Calculate
         ));
     }
 
-
-
-
+    /// <summary> Executes a mathematical operation with comprehensive error handling</summary>
+    /// <param name="title">The operation title</param>
+    /// <param name="formula">The mathematical formula description</param>
+    /// <param name="operatorSymbol">The operator symbol</param>
     private static void Run(string title, string formula, string operatorSymbol)
     {
         Utility.DisplayTitleAndFormula(title, formula);
@@ -133,6 +145,7 @@ public static class Calculate
 
                     else
                         PrintResult(title, operatorSymbol, userInputs[0], userInputs[1]);
+                    
                 }
                 catch
                 {
