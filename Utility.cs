@@ -11,20 +11,6 @@ internal enum Operation
 
 public static class Utility
 {
-    //// reset background and foreground console colors
-    //public const string ResetColor = "\e[0m";
-
-    //// set white background and red foreground
-    //public const string ErrorColor = "\e[48;2;255;255;255;38;2;255;0;0m";
-
-    //// set white background and red foreground
-    //public const string ResultColor = "\e[48;2;255;255;255;38;2;0;128;0m";
-
-    //// light blue
-    //public const string BackgroundColor = "\e[48;2;26;132;184m";
-
-    //// white
-    //public const string ForegroundColor = "\e[37m";
 
     public static void OperationMenu()
     {
@@ -153,7 +139,7 @@ public static class Utility
 
     public static void ApplyHighlighter(string text)
     {
-        text = Formats.BackgroundColor + Formats.ForegroundColor + text + Formats.ResetColor;
+        text = AnsiColorCodes.Background + AnsiColorCodes.Foreground + text + AnsiColorCodes.Reset;
         WriteLine(text);
     }
 
@@ -171,14 +157,14 @@ public static class Utility
         {
             case "menu":
             {
-                WriteLine($"{Formats.ErrorColor} Please enter a valid choice between " +
-                          $"{number1} and {number2}. {Formats.ResetColor}\n");
+                WriteLine($"{AnsiColorCodes.Error} Please enter a valid choice between " +
+                          $"{number1} and {number2}. {AnsiColorCodes.Reset}\n");
                 break;
             }
 
             case "tryAgain":
             {
-                WriteLine($"{Formats.ErrorColor} Error: Enter choice between 'Y' and 'N'  {Formats.ResetColor}\n");
+                WriteLine($"{AnsiColorCodes.Error} Error: Enter choice between 'Y' and 'N'  {AnsiColorCodes.Reset}\n");
                 break;
             }
 
@@ -189,8 +175,8 @@ public static class Utility
                 const string errorLine2 =
                     "Expected: Both inputs should be of the same type - numbers.";
 
-                WriteLine($"\n{Formats.ErrorColor} {errorLine1} `{number1}` and `{number2}`. {Formats.ResetColor}");
-                WriteLine($"{Formats.ErrorColor} {errorLine2} {Formats.ResetColor}\n");
+                WriteLine($"\n{AnsiColorCodes.Error} {errorLine1} `{number1}` and `{number2}`. {AnsiColorCodes.Reset}");
+                WriteLine($"{AnsiColorCodes.Error} {errorLine2} {AnsiColorCodes.Reset}\n");
                 break;
             }
 
@@ -241,8 +227,8 @@ public static class Utility
                 isLooping = true;
                 //SetCursorPosition(29, CursorTop);
                 WriteLine(
-                    $"{Formats.ErrorColor} Maximum number of attempts has been reached. " +
-                    $"{attemptCounter} / {maxAttempt} {Formats.ResetColor}");
+                    $"{AnsiColorCodes.Error} Maximum number of attempts has been reached. " +
+                    $"{attemptCounter} / {maxAttempt} {AnsiColorCodes.Reset}");
             }
         }
 

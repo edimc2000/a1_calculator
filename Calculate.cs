@@ -38,7 +38,7 @@ public class Calculate()
         }
         catch
         {
-            Utility.DisplayInputError(inputs[0], inputs[1],"operate");
+            Utility.DisplayInputError(inputs[0], inputs[1], "operate");
         }
     }
 
@@ -75,8 +75,8 @@ public class Calculate()
         {
             if (inputs[1].Equals("0"))
                 WriteLine(
-                    $" {Formats.ErrorColor} Error: Value for b (divisor) should not " +
-                    $"be zero {Formats.ResetColor}\n");
+                    $" {AnsiColorCodes.Error} Error: Value for b (divisor) should not " +
+                    $"be zero {AnsiColorCodes.Reset}\n");
 
             else
                 PrintResult(title, operatorSign, inputs[0], inputs[1]);
@@ -111,7 +111,7 @@ public class Calculate()
     private static void PrintResult(string title, string sign, string num1, string num2)
     {
         double result = 0;
-        const int ALIGN = -22;
+        const int LEFT_ALIGN = -22;
 
         switch (sign)
         {
@@ -138,14 +138,15 @@ public class Calculate()
 
 
         WriteLine(string.Format(
-            " {0} {1, " + ALIGN + "}: {2} {3} {4} = {5} {6}\n",
-            Formats.ResultColor,
+            " {0} {1, " + LEFT_ALIGN + "}: {2} {3} {4} = {5} {6}\n",
+            AnsiColorCodes.Result,
             title,
             double.Parse(num1),
             sign,
             double.Parse(num2),
             Utility.FormatNumber(result),
-            Formats.ResetColor
+            "",
+            AnsiColorCodes.Reset
         ));
     }
 
@@ -159,5 +160,4 @@ public class Calculate()
 
         return [firstNumber, secondNumber];
     }
-
 }
